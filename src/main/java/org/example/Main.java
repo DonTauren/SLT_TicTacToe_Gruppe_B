@@ -47,7 +47,7 @@ public class Main {
                 printBoard();
                 winner = checkWinner();
             } else {
-                System.out.println("Slot already taken! Please enter slot number:");
+                System.out.println("Slot already taken. Please enter slot number:");
             }
         }
 
