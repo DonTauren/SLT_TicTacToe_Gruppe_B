@@ -52,7 +52,7 @@ public class Main {
         }
 
         if (winner.equalsIgnoreCase("draw")) {
-            System.out.println("It's a draw! Thanks for playing.");
+            System.out.println("It's a draw. Thanks for playing.");
         } else {
             System.out.println("Congrats! " + winner + "'s have won! Thanks for playing.");
         }
