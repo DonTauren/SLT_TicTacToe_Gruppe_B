@@ -1,9 +1,6 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -13,11 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
         with:
           java-version: 20
           distribution: temurin
@@ -25,23 +19,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: v${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
-          draft: false
-          prerelease: false
-
-      - name: Upload .jar to release
-        uses: actions/upload-release-asset@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/SLT_TicTacToe_Gruppe_B.jar
-          asset_name: SLT_TicTacToe_Gruppe_B.jar
-          asset_content_type: application/java-archive
+          name: TicTacToe_Gruppe_B-jar
+          path: target/*.jar
