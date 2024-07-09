@@ -19,8 +19,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
+      - name: make new directory for .jar file
+        run: mkdir staging && cp target/*.jar staging
+
       - name: Upload JAR
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.4
         with:
           name: TicTacToe_Gruppe_B-jar
           path: target/*.jar
