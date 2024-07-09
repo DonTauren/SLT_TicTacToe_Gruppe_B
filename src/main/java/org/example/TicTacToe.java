@@ -8,8 +8,6 @@ public class TicTacToe {
     protected Player currentPlayer;
     protected Board board;
 
-    protected String test;
-
     public TicTacToe() {
         player1 = new Player('X');
         player2 = new Player('O');
